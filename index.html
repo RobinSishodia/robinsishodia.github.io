@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robin Sishodia — Salesforce Administrator &amp; DevOps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #10141B;
+    --surface: #171D27;
+    --surface-2: #1E2632;
+    --border: #2A3342;
+    --text: #E7EAEE;
+    --text-muted: #8993A6;
+    --text-dim: #5B6577;
+    --teal: #5EEAD4;
+    --amber: #F5B841;
+    --blue: #7DB2F5;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-sans: 'Inter', -apple-system, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--text); font-family: var(--font-sans);
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 64px 64px; opacity: 0.15; pointer-events: none; z-index: 0;
+  }
+  .wrap { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; padding: 0 24px; }
+
+  .topbar { display: flex; justify-content: space-between; align-items: center; padding: 28px 0; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: 12.5px; }
+  .topbar .who { color: var(--text); font-weight: 500; }
+  .topbar .status { color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 8px var(--teal); animation: pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+  .hero { padding: 60px 0 44px; border-bottom: 1px solid var(--border); }
+  .hero .eyebrow { font-family: var(--font-mono); font-size: 12.5px; color: var(--amber); margin-bottom: 16px; }
+  .hero h1 { font-size: 38px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
+  .hero .role-line { margin-top: 10px; color: var(--text-muted); font-size: 15px; max-width: 60ch; }
+  .hero .role-line b { color: var(--text); font-weight: 600; }
+  .hero p.lede { margin-top: 18px; max-width: 60ch; color: var(--text-muted); font-size: 14.5px; }
+  .hero .links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 28px; font-family: var(--font-mono); font-size: 12.5px; }
+  .hero .links a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--text-dim); padding-bottom: 2px; transition: border-color 0.15s, color 0.15s; }
+  .hero .links a:hover { color: var(--teal); border-color: var(--teal); }
+
+  section.block { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  section.block:last-of-type { border-bottom: none; }
+  .block-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 28px; }
+  .block-head .idx { font-family: var(--font-mono); font-size: 12.5px; color: var(--text-dim); }
+  .block-head h2 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+
+  .cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .cert-cell { background: var(--surface); padding: 16px 18px; }
+  .cert-cell .name { font-size: 14px; font-weight: 600; color: var(--text); }
+  .cert-cell .meta { font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); margin-top: 6px; }
+
+  .tabs { display: flex; gap: 2px; margin-bottom: 32px; border: 1px solid var(--border); width: fit-content; }
+  .tab-btn { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.03em; padding: 10px 20px; background: var(--surface); color: var(--text-muted); border: none; cursor: pointer; transition: all 0.15s; }
+  .tab-btn.active { background: var(--surface-2); color: var(--teal); }
+  .tab-btn:not(.active):hover { color: var(--text); }
+  .track { display: none; }
+  .track.active { display: block; }
+
+  .skill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .skill-row span { font-family: var(--font-mono); font-size: 11.5px; color: var(--text-muted); background: var(--surface); border: 1px solid var(--border); padding: 5px 10px; }
+
+  .project { border: 1px solid var(--border); background: var(--surface); margin-bottom: 14px; padding: 18px 20px; }
+  .project:last-child { margin-bottom: 0; }
+  .project-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; }
+  .project-head h3 { font-size: 15.5px; font-weight: 700; }
+  .project-head h3 a { color: var(--text); text-decoration: none; }
+  .project-head h3 a:hover { color: var(--teal); }
+  .pill { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.05em; padding: 3px 7px; border: 1px solid; white-space: nowrap; flex-shrink: 0; }
+  .pill.building { color: var(--amber); border-color: rgba(245,184,65,0.4); background: rgba(245,184,65,0.08); }
+  .pill.practiced { color: var(--blue); border-color: rgba(125,178,245,0.4); background: rgba(125,178,245,0.08); }
+  .project p.desc { color: var(--text-muted); font-size: 13.5px; margin-top: 8px; max-width: 58ch; }
+  .project .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .project .tags span { font-family: var(--font-mono); font-size: 10.5px; color: var(--text-dim); background: var(--surface-2); border: 1px solid var(--border); padding: 2px 7px; }
+  .project .repo-link { display: inline-block; margin-top: 10px; font-family: var(--font-mono); font-size: 11.5px; }
+  .project .repo-link a { color: var(--text-dim); text-decoration: none; border-bottom: 1px solid transparent; }
+  .project .repo-link a:hover { color: var(--teal); border-color: var(--teal); }
+
+  footer { padding: 36px 0 56px; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); }
+  footer a { color: var(--text-muted); text-decoration: none; }
+  footer a:hover { color: var(--teal); }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 28px; }
+    .cert-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 10px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="who">Robin Sishodia</div>
+    <div class="status"><span class="dot"></span>Open to Work · India</div>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">// Salesforce Administrator · DevOps in training</div>
+    <h1>CRM operations, automated. Infrastructure, learned by building.</h1>
+    <p class="role-line">Certified <b>Salesforce Platform Administrator &amp; Advanced Administrator</b> · Platform App Builder · Agentforce Specialist · Agentblazer Champion '26 · Agentblazer Innovator '26</p>
+    <p class="lede">4+ years across Operations, Banking and Recruitment, now focused on Salesforce Administrator, Configuration and Automation — with AWS and DevOps fundamentals built hands-on alongside it.</p>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/robinsishodia/" target="_blank" rel="noopener">linkedin.com/in/robinsishodia</a>
+      <a href="https://github.com/RobinSishodia" target="_blank" rel="noopener">github.com/RobinSishodia</a>
+      <a href="https://www.salesforce.com/trailblazer/robin11" target="_blank" rel="noopener">trailhead profile ↗</a>
+      <a href="mailto:robin.sishodia@gmail.com">robin.sishodia@gmail.com</a>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="block-head"><span class="idx">01</span><h2>Trailhead</h2></div>
+    <div class="cert-grid" style="grid-template-columns: repeat(5, 1fr);">
+      <div class="cert-cell"><div class="name">Ranger</div><div class="meta">rank</div></div>
+      <div class="cert-cell"><div class="name">150</div><div class="meta">badges</div></div>
+      <div class="cert-cell"><div class="name">66,775</div><div class="meta">points</div></div>
+      <div class="cert-cell"><div class="name">10</div><div class="meta">trails</div></div>
+      <div class="cert-cell"><div class="name">6</div><div class="meta">superbadges</div></div>
+    </div>
+    <div class="skill-row" style="margin-top: 16px; margin-bottom: 0;">
+      <span>Agentblazer Champion '26</span><span>Agentblazer Innovator '26</span>
+      <span>Superbadge: Flow Optimization</span><span>Superbadge: Flow Administration</span>
+      <span>Superbadge: Data Stream Fundamentals</span><span>Superbadge: Prompt Builder Templates</span>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><span class="idx">02</span><h2>Certifications</h2></div>
+    <div class="cert-grid">
+      <div class="cert-cell"><div class="name">Salesforce Certified Platform Administrator</div><div class="meta">Salesforce · issued Jul 2026</div></div>
+      <div class="cert-cell"><div class="name">Salesforce Certified Advanced Administrator</div><div class="meta">Salesforce · issued Jul 2026</div></div>
+      <div class="cert-cell"><div class="name">Salesforce Certified Platform App Builder</div><div class="meta">Salesforce · issued Jul 2026</div></div>
+      <div class="cert-cell"><div class="name">Salesforce Certified Agentforce Specialist</div><div class="meta">Salesforce · issued Jul 2026</div></div>
+      <div class="cert-cell"><div class="name">Salesforce Certified Platform Foundation</div><div class="meta">Salesforce · issued Jul 2026</div></div>
+      <div class="cert-cell"><div class="name">AWS Certified AI Practitioner</div><div class="meta">Amazon Web Services · issued Aug 2026</div></div>
+      <div class="cert-cell"><div class="name">AWS Certified Cloud Practitioner</div><div class="meta">Amazon Web Services · issued Aug 2026</div></div>
+      <div class="cert-cell"><div class="name">AWS Certified DevOps Engineer - Professional</div><div class="meta">Amazon Web Services · issued Sept 2026</div></div>
+      <div class="cert-cell"><div class="name">GitHub Foundation</div><div class="meta">Microsoft · issued Sept 2026</div></div>
+      <div class="cert-cell"><div class="name">GitHub Action</div><div class="meta">Microsoft · issued Sept 2026</div></div>
+      <div class="cert-cell"><div class="name">Copado AI</div><div class="meta">Copado · issued May 2026</div></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><span class="idx">03</span><h2>Work</h2></div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-track="sf">Salesforce</button>
+      <button class="tab-btn" data-track="devops">DevOps</button>
+    </div>
+
+    <div class="track active" id="track-sf">
+      <div class="skill-row">
+        <span>Administration &amp; Configuration</span><span>Users, Profiles, Roles &amp; Permissions</span>
+        <span>Security &amp; Access Management</span><span>Flow &amp; Automation</span>
+        <span>Reports &amp; Dashboards</span><span>Agentforce &amp; Prompt Builder</span><span>Data 360</span>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><h3>Coral Cloud Resort — Salesforce Administration</h3><span class="pill practiced">TRAILHEAD</span></div>
+        <p class="desc">Applied administration concepts — security, access, configuration, automation — to a full business scenario: users, records, data and business processes.</p>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><h3>Agentforce — Employee Agents</h3><span class="pill practiced">TRAILHEAD</span></div>
+        <p class="desc">Built and configured employee-agent scenarios with Agentforce, exploring how AI agents support users and automate business interactions.</p>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><h3>Data 360 &amp; Agentforce</h3><span class="pill practiced">TRAILHEAD</span></div>
+        <p class="desc">Connected Data 360 capabilities with Agentforce to explore trusted, unified data behind AI-driven CRM experiences.</p>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><h3>Salesforce Flow &amp; Business Process Automation</h3><span class="pill practiced">TRAILHEAD</span></div>
+        <p class="desc">Built record-triggered automation, translating business requirements into automated Salesforce processes.</p>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><h3>Salesforce Prompt Builder &amp; AI</h3><span class="pill practiced">TRAILHEAD</span></div>
+        <p class="desc">Created Prompt Builder templates — a sales email template, a Flex template, and an engagement email prompt — combining CRM data, automation and generative AI.</p>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><h3>Salesforce Org &amp; User Administration</h3><span class="pill practiced">TRAILHEAD</span></div>
+        <p class="desc">Configured a Salesforce org for users — profiles, roles, permission sets, and org/playground administration.</p>
+      </div>
+    </div>
+
+    <div class="track" id="track-devops">
+      <div class="skill-row">
+        <span>AWS — EC2, EKS, IAM, VPC</span><span>Docker</span><span>Kubernetes</span>
+        <span>Jenkins</span><span>Terraform</span><span>Ansible</span><span>ArgoCD</span><span>Prometheus / Grafana</span>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><h3><a href="https://github.com/RobinSishodia/End-to-End-CI-CD-GitOps-Deployment-on-AWS-EKS" target="_blank" rel="noopener">End-to-End CI/CD &amp; GitOps on AWS EKS</a></h3><span class="pill building">BUILDING</span></div>
+        <p class="desc">Three-tier app deployed via GitOps — Terraform provisions the EKS cluster, Jenkins builds and pushes the image, ArgoCD syncs it into Kubernetes, Prometheus/Grafana monitor it.</p>
+        <div class="tags"><span>AWS EKS</span><span>Terraform</span><span>Jenkins</span><span>ArgoCD</span><span>Prometheus</span></div>
+        <div class="repo-link"><a href="https://github.com/RobinSishodia/End-to-End-CI-CD-GitOps-Deployment-on-AWS-EKS" target="_blank" rel="noopener">view repo →</a></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><h3><a href="https://github.com/RobinSishodia/jenkins-devsecops-pipeline" target="_blank" rel="noopener">Jenkins DevSecOps CI/CD Pipeline</a></h3><span class="pill building">BUILDING</span></div>
+        <p class="desc">Security built into the pipeline, not bolted on — SonarQube for code quality, Trivy for image scanning, before anything deploys to EC2.</p>
+        <div class="tags"><span>Jenkins</span><span>Docker</span><span>SonarQube</span><span>Trivy</span></div>
+        <div class="repo-link"><a href="https://github.com/RobinSishodia/jenkins-devsecops-pipeline" target="_blank" rel="noopener">view repo →</a></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><h3><a href="https://github.com/RobinSishodia/terraform-ansible-aws-infra" target="_blank" rel="noopener">AWS Infra Automation — Terraform &amp; Ansible</a></h3><span class="pill building">BUILDING</span></div>
+        <p class="desc">Modular AWS infrastructure as code — Terraform provisions EC2/VPC/IAM, Ansible handles configuration management on top.</p>
+        <div class="tags"><span>Terraform</span><span>Ansible</span><span>AWS</span></div>
+        <div class="repo-link"><a href="https://github.com/RobinSishodia/terraform-ansible-aws-infra" target="_blank" rel="noopener">view repo →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 — built with intent, not a template</span>
+    <a href="mailto:your.email@example.com">get in touch →</a>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.track').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('track-' + btn.dataset.track).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
