@@ -1,43 +1,15 @@
-[README.md](https://github.com/user-attachments/files/32008507/README.md)
-# Hi, I'm Robin 👋
+# robinsishodia.github.io
 
-**Salesforce Administrator | Certified Platform Administrator & Advanced Administrator · Platform App Builder · Agentforce Specialist | Agentblazer Champion '26**
+Personal portfolio of **Robin Sishodia**, a Salesforce Administrator building AWS/DevOps skills.
 
-Also building DevOps fundamentals hands-on — AWS, Docker, Kubernetes, CI/CD.
+🌐 **Live site:** https://robinsishodia.github.io
 
-📍 Gurugram, India · 🌐 [Portfolio](#) · 💼 [LinkedIn](https://www.linkedin.com/in/robinsishodia/) · 🏅 [Trailhead](https://www.salesforce.com/trailblazer/robin11)
+The site covers:
 
-4+ years across operations, banking and recruitment, now focused on Salesforce administration, configuration and automation, with cloud/DevOps fundamentals built alongside it.
+- **Trailhead:** Double Star Ranger, Agentblazer Champion & Innovator '26
+- **Certifications:** 11 across Salesforce, AWS, GitHub and Copado
+- **Work:** Salesforce admin projects and DevOps projects (AWS EKS, Jenkins DevSecOps, Terraform + Ansible)
 
-## 🏅 Trailhead
+Built as a single static `index.html` (HTML + CSS, no framework) and hosted on GitHub Pages.
 
-**Ranger** · 150 badges · 66,775 points · 10 trails · 6 superbadges · Agentblazer Champion '26
-
-## 🏅 Certifications
-
-`Salesforce Certified Platform Administrator` `Advanced Administrator` `Platform App Builder` `Agentforce Specialist` `Platform Foundation` `AWS Certified AI Practitioner` `AWS Certified Cloud Practitioner` `Copado AI`
-
-## 📂 Salesforce — hands-on (Trailhead)
-
-- **Coral Cloud Resort** — Salesforce administration applied to a full business scenario
-- **Agentforce — Employee Agents** — AI agent configuration for business interactions
-- **Data 360 & Agentforce** — unified data behind AI-driven CRM experiences
-- **Salesforce Flow & Business Process Automation** — record-triggered automation
-- **Salesforce Prompt Builder & AI** — generative AI templates using CRM data
-- **Salesforce Org & User Administration** — profiles, roles, permission sets
-
-## 📂 DevOps — hands-on (GitHub)
-
-**[End-to-End CI/CD & GitOps on AWS EKS](https://github.com/RobinSishodia/End-to-End-CI-CD-GitOps-Deployment-on-AWS-EKS)**
-Terraform → Jenkins → Docker → ArgoCD → EKS, monitored with Prometheus/Grafana.
-
-**[Jenkins DevSecOps Pipeline](https://github.com/RobinSishodia/jenkins-devsecops-pipeline)**
-SonarQube + Trivy gates built into the CI/CD pipeline before deploy to EC2.
-
-**[Terraform + Ansible AWS Infra](https://github.com/RobinSishodia/terraform-ansible-aws-infra)**
-Modular AWS infrastructure as code with Ansible configuration management.
-
-## 📫 Reach me
-
-- Email: your.email@example.com
-- LinkedIn: [in/robinsishodia](https://www.linkedin.com/in/robinsishodia/)
+📫 [robin.sishodia@gmail.com](mailto:robin.sishodia@gmail.com) · [LinkedIn](https://www.linkedin.com/in/robinsishodia) · [GitHub](https://github.com/RobinSishodia)
