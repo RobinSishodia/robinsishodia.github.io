@@ -62,7 +62,7 @@
   .block-head h2 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
 
   .cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-  .cert-grid.stats { grid-template-columns: repeat(4, 1fr); }
+  .cert-grid.stats { grid-template-columns: repeat(5, 1fr); }
   .cert-grid:not(.stats) .cert-cell:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .cert-cell { background: var(--surface); padding: 16px 18px; }
   .cert-cell .name { font-size: 14px; font-weight: 600; color: var(--text); }
@@ -103,6 +103,7 @@
     .hero h1 { font-size: 28px; }
     .cert-grid { grid-template-columns: 1fr; }
     .cert-grid.stats { grid-template-columns: repeat(2, 1fr); }
+    .cert-grid.stats .cert-cell:first-child { grid-column: 1 / -1; }
     footer { flex-direction: column; gap: 10px; align-items: flex-start; }
   }
 </style>
@@ -132,14 +133,17 @@
     <div class="block-head"><span class="idx">01</span><h2>Trailhead</h2></div>
     <div class="cert-grid stats">
       <div class="cert-cell"><div class="name">Double Star Ranger</div><div class="meta">rank</div></div>
-      <div class="cert-cell"><div class="name">250+</div><div class="meta">badges</div></div>
+      <div class="cert-cell"><div class="name">248</div><div class="meta">badges</div></div>
+      <div class="cert-cell"><div class="name">102,650</div><div class="meta">points</div></div>
       <div class="cert-cell"><div class="name">19</div><div class="meta">trails</div></div>
       <div class="cert-cell"><div class="name">7</div><div class="meta">superbadges</div></div>
     </div>
     <div class="skill-row" style="margin-top: 16px; margin-bottom: 0;">
       <span>Agentblazer Champion '26</span><span>Agentblazer Innovator '26</span>
-      <span>Superbadge: Flow Optimization</span><span>Superbadge: Flow Administration</span>
-      <span>Superbadge: Data Stream Fundamentals</span><span>Superbadge: Prompt Builder Templates</span>
+      <span>Superbadge: Agentforce Service Agents</span><span>Superbadge: Flow Optimization</span>
+      <span>Superbadge: Flow Administration</span><span>Superbadge: Flow Fundamentals</span>
+      <span>Superbadge: Data Stream Fundamentals</span><span>Superbadge: MFA &amp; Single Sign-On Settings</span>
+      <span>Superbadge: Prompt Builder Templates</span>
     </div>
   </section>
 
